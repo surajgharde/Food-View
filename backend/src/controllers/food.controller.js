@@ -27,6 +27,16 @@ const { v4: uuid} = require("uuid");
 
  }
 
+ async function getFoodItems(req, res) {
+   const foodItems = await foodModel.find({})
+   res.status(200).json({
+    message: "Food items fetched succesfully",
+    foodItems
+   })
+  
+ }
+
  module.exports = {
-    createFood
+    createFood,
+    getFoodItems
  }
