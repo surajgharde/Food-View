@@ -1,0 +1,139 @@
+@import './theme.css';
+
+.page-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg-light);
+  color: var(--color-text-light);
+  transition: background 0.3s, color 0.3s;
+}
+
+.form-box {
+  background: var(--input-bg-light);
+  padding: 2rem 2.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  box-sizing: border-box;
+}
+
+.form-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+input, select {
+  padding: 0.7rem;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--input-border);
+  background: var(--input-bg-light);
+  color: var(--color-text-light);
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.2s;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+input:focus, select:focus {
+  border-color: var(--color-primary);
+}
+
+.form-action {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+button {
+  padding: 0.8rem;
+  border-radius: var(--border-radius);
+  border: none;
+  background: var(--color-primary);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+button:hover {
+  background: var(--color-accent);
+}
+
+.switch-link {
+  text-align: center;
+  font-size: 0.95rem;
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.switch-link:hover {
+  color: var(--color-accent);
+}
+
+/* choice landing removed */
+
+
+.partner-card {
+  max-width: 420px;
+}
+
+.partner-card .subtitle {
+  font-size: 0.95rem;
+  opacity: 0.9;
+  text-align: center;
+}
+
+.switch-small {
+  text-align: center;
+  font-size: 0.9rem;
+  margin-bottom: 0.4rem;
+}
+
+.switch-small a {
+  color: var(--color-primary);
+  text-decoration: underline;
+  margin: 0 6px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+}
+
+.col label {
+  font-size: 0.85rem;
+}
+
+.helper {
+  font-size: 0.8rem;
+  color: rgba(0,0,0,0.55);
+  margin-top: 0.25rem;
+}
+
+button.primary {
+  background: linear-gradient(90deg, var(--color-primary), #2f7be6);
+  padding: 0.9rem;
+  font-weight: 700;
+}
+
+/* Make inputs darker on partner card */
+/* inputs use shared styles */
+
