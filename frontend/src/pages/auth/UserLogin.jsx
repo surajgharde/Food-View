@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../../styles/auth-shared.css';
 
-export default function UserLogin() {
+const UserLogin = function () {
   return (
     <div className="page-container">
   <form className="form-box" autoComplete="off">
@@ -16,9 +17,11 @@ export default function UserLogin() {
         </div>
         <div className="form-action">
           <button type="submit">Login</button>
-          <a className="switch-link" href="/user/register">Don't have an account? Register</a>
+          <Link className="switch-link" to="/user/register">Don't have an account? Register</Link>
         </div>
       </form>
     </div>
   );
 }
+
+export default UserLogin;

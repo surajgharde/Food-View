@@ -1,13 +1,21 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../../styles/auth-shared.css';
 
-export default function FoodPartnerRegister() {
+const FoodPartnerRegister = function() {
+  // const handleSubmit = async (e) => {
+  //   const businessName = e.target.businessName.value;
+  //   const contactName = e.target.contactName.value;
+  //   const phone = e.target.phone.value;
+  //   const email = e.target.email.value;
+  //   const password = e.target
+  // }
   return (
     <div className="page-container">
   <form className="form-box" autoComplete="off">
         <div className="form-title">Partner sign up</div>
         <div className="subtitle">Grow your business with our platform.</div>
-        <div className="switch-small">Switch <a href="/">User</a> · <a href="/food-partner/register">Food partner</a></div>
+  <div className="switch-small">Switch <Link to="/">User</Link> · <Link to="/food-partner/register">Food partner</Link></div>
 
         <div className="form-group">
           <label htmlFor="businessName">Business Name</label>
@@ -43,9 +51,11 @@ export default function FoodPartnerRegister() {
 
         <div className="form-action">
           <button type="submit" className="primary">Create Partner Account</button>
-          <a className="switch-link" href="/food-partner/login">Already a partner? Sign in</a>
+          <Link className="switch-link" to="/food-partner/login">Already a partner? Sign in</Link>
         </div>
       </form>
     </div>
   );
 }
+
+export default FoodPartnerRegister;
