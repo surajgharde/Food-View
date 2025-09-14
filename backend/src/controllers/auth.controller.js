@@ -93,7 +93,7 @@ function logoutUser(req,res) {
 
 async function registerFoodPartner(req,res) {
     
-    const {name, email, password, phone, address, contactName} = req.body;
+    const {businessName, email, password, phone, address, contactName} = req.body;
 
     const isAccountAlereadyExists = await foodPartnerModel.findOne({
         email
@@ -108,7 +108,7 @@ async function registerFoodPartner(req,res) {
     const hashedPassword = await bcryt.hash(password, 10);
 
     const foodPartner = await foodPartnerModel.create({
-        name,
+        businessName,
         email,
         password: hashedPassword,
         phone,

@@ -1,18 +1,42 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import '../../styles/auth-shared.css';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
 
 const FoodPartnerRegister = function() {
-  // const handleSubmit = async (e) => {
-  //   const businessName = e.target.businessName.value;
-  //   const contactName = e.target.contactName.value;
-  //   const phone = e.target.phone.value;
-  //   const email = e.target.email.value;
-  //   const password = e.target
-  // }
+
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const businessName = e.target.businessName.value;
+    const contactName = e.target.contactName.value;
+    const phone = e.target.phone.value;
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    const address = e.target.address.value;
+
+    const response = await axios.post("http://localhost:3000/api/auth/food-partner/register",{
+      businessName,
+      contactName,
+      phone,
+      email,
+      address,
+      password
+    }, {
+      withCredentials: true
+    })
+
+    console.log(response.data)
+    navigate("/create-food")
+  }
+
   return (
     <div className="page-container">
-  <form className="form-box" autoComplete="off">
+  <form className="form-box" autoComplete="off" onSubmit={handleSubmit}>
         <div className="form-title">Partner sign up</div>
         <div className="subtitle">Grow your business with our platform.</div>
   <div className="switch-small">Switch <Link to="/">User</Link> · <Link to="/food-partner/register">Food partner</Link></div>
