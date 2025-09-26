@@ -1,15 +1,14 @@
-import React from 'react';
-import { Link, Navigate } from 'react-router-dom';
+ import React from 'react';
+import { Link } from 'react-router-dom';
 import '../../styles/auth-shared.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-
-const FoodPartnerRegister = function() {
+const FoodPartnerRegister = () => {
 
   const navigate = useNavigate();
-
-  const handleSubmit = async (e) => {
+  
+  const handleSubmit = (e) => { 
     e.preventDefault();
 
     const businessName = e.target.businessName.value;
@@ -19,67 +18,69 @@ const FoodPartnerRegister = function() {
     const password = e.target.password.value;
     const address = e.target.address.value;
 
-    const response = await axios.post("http://localhost:3000/api/auth/food-partner/register",{
-      businessName,
+    axios.post("http://localhost:3000/api/auth/food-partner/register", {
+      name:businessName,
       contactName,
       phone,
       email,
-      address,
-      password
-    }, {
-      withCredentials: true
-    })
-
-    console.log(response.data)
-    navigate("/create-food")
-  }
+      password,
+      address
+    }, { withCredentials: true })
+      .then(response => {
+        console.log(response.data);
+        navigate("/create-food"); // Redirect to create food page after successful registration
+      })
+      .catch(error => {
+        console.error("There was an error registering!", error);
+      });
+  };
 
   return (
-    <div className="page-container">
-  <form className="form-box" autoComplete="off" onSubmit={handleSubmit}>
-        <div className="form-title">Partner sign up</div>
-        <div className="subtitle">Grow your business with our platform.</div>
-  <div className="switch-small">Switch <Link to="/">User</Link> · <Link to="/food-partner/register">Food partner</Link></div>
-
-        <div className="form-group">
-          <label htmlFor="businessName">Business Name</label>
-          <input type="text" id="businessName" name="businessName" autoComplete="off" />
-        </div>
-
-        <div className="row">
-          <div className="col">
-            <label htmlFor="contactName">Contact Name</label>
-            <input type="text" id="contactName" name="contactName" autoComplete="off" />
+    <div className="auth-page-wrapper">
+      <div className="auth-card" role="region" aria-labelledby="partner-register-title">
+        <header>
+          <h1 id="partner-register-title" className="auth-title">Partner sign up</h1>
+          <p className="auth-subtitle">Grow your business with our platform.</p>
+        </header>
+        <nav className="auth-alt-action" style={{marginTop: '-4px'}}>
+          <strong style={{fontWeight:600}}>Switch:</strong> <Link to="/user/register">User</Link> • <Link to="/food-partner/register">Food partner</Link>
+        </nav>
+        <form className="auth-form" onSubmit={handleSubmit} noValidate>
+          <div className="field-group">
+            <label htmlFor="businessName">Business Name</label>
+            <input id="businessName" name="businessName" placeholder="Tasty Bites" autoComplete="organization" />
           </div>
-          <div className="col">
-            <label htmlFor="phone">Phone</label>
-            <input type="tel" id="phone" name="phone" autoComplete="off" />
+          <div className="two-col">
+            <div className="field-group">
+              <label htmlFor="contactName">Contact Name</label>
+              <input id="contactName" name="contactName" placeholder="Jane Doe" autoComplete="name" />
+            </div>
+            <div className="field-group">
+              <label htmlFor="phone">Phone</label>
+              <input id="phone" name="phone" placeholder="+1 555 123 4567" autoComplete="tel" />
+            </div>
           </div>
+            <div className="field-group">
+              <label htmlFor="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="business@example.com" autoComplete="email" />
+            </div>
+          <div className="field-group">
+            <label htmlFor="password">Password</label>
+            <input id="password" name="password" type="password" placeholder="Create password" autoComplete="new-password" />
+          </div>
+          <div className="field-group">
+            <label htmlFor="address">Address</label>
+            <input id="address" name="address" placeholder="123 Market Street" autoComplete="street-address" />
+            <p className="small-note">Full address helps customers find you faster.</p>
+          </div>
+          <button className="auth-submit" type="submit">Create Partner Account</button>
+        </form>
+        <div className="auth-alt-action">
+          Already a partner? <Link to="/food-partner/login">Sign in</Link>
         </div>
-
-        <div className="form-group">
-          <label htmlFor="email">Email</label>
-          <input type="email" id="email" name="email" autoComplete="off" />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="password">Password</label>
-          <input type="password" id="password" name="password" autoComplete="off" />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="address">Address</label>
-          <input type="text" id="address" name="address" autoComplete="off" />
-          <div className="helper">Full address helps customers find you faster.</div>
-        </div>
-
-        <div className="form-action">
-          <button type="submit" className="primary">Create Partner Account</button>
-          <Link className="switch-link" to="/food-partner/login">Already a partner? Sign in</Link>
-        </div>
-      </form>
+      </div>
     </div>
   );
-}
+};
 
 export default FoodPartnerRegister;

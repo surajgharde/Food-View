@@ -5,7 +5,6 @@ const jwt = require('jsonwebtoken');
 
 async function registerUser(req, res) {
      
-    
     const { fullName, email, password } = req.body;
 
     const isUserAlreadyExists = await userModel.findOne({
@@ -93,7 +92,7 @@ function logoutUser(req,res) {
 
 async function registerFoodPartner(req,res) {
     
-    const {businessName, email, password, phone, address, contactName} = req.body;
+    const {name, email, password, phone, address, contactName} = req.body;
 
     const isAccountAlereadyExists = await foodPartnerModel.findOne({
         email
@@ -108,7 +107,7 @@ async function registerFoodPartner(req,res) {
     const hashedPassword = await bcryt.hash(password, 10);
 
     const foodPartner = await foodPartnerModel.create({
-        businessName,
+        name,
         email,
         password: hashedPassword,
         phone,
@@ -162,6 +161,8 @@ async function loginFoodPartner(req,res) {
     const token = jwt.sign({
         id: foodPartner._id,
     },process.env.JWT_SECRET)
+
+    res.cookie("token", token)
 
     res.status(200).json({
         message: "Food partner logged in succesfully",

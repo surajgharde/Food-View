@@ -1,47 +1,53 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+ import React from 'react';
 import '../../styles/auth-shared.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 const UserLogin = () => {
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const handleSubmit  = async (e) => {
-      e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-      const email = e.target.email.value;
-      const password = e.target.password.value;
+    const email = e.target.email.value;
+    const password = e.target.password.value;
 
-      const response = await axios.post("http://localhost:3000/api/auth/user/login",{
-        email,
-        password
-      }, {withCredentials: true});
+    const response = await axios.post("http://localhost:3000/api/auth/user/login", {
+      email,
+      password
+    }, { withCredentials: true });
 
-      console.log(response.data);
+    console.log(response.data);
 
-      navigate("/")
-    }
+    navigate("/"); // Redirect to home after login
+
+  };
+
   return (
-    <div className="page-container">
-  <form className="form-box" autoComplete="off" onSubmit={handleSubmit}>
-        <div className="form-title">User Login</div>
-        <div className="form-group">
-          <label htmlFor="email">Email</label>
-          <input type="email" id="email" name="email" autoComplete="off" required />
+    <div className="auth-page-wrapper">
+      <div className="auth-card" role="region" aria-labelledby="user-login-title">
+        <header>
+          <h1 id="user-login-title" className="auth-title">Welcome back</h1>
+          <p className="auth-subtitle">Sign in to continue your food journey.</p>
+        </header>
+        <form className="auth-form" onSubmit={handleSubmit} noValidate>
+          <div className="field-group">
+            <label htmlFor="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="you@example.com" autoComplete="email" />
+          </div>
+          <div className="field-group">
+            <label htmlFor="password">Password</label>
+            <input id="password" name="password" type="password" placeholder="••••••••" autoComplete="current-password" />
+          </div>
+          <button className="auth-submit" type="submit">Sign In</button>
+        </form>
+        <div className="auth-alt-action">
+          New here? <a href="/user/register">Create account</a>
         </div>
-        <div className="form-group">
-          <label htmlFor="password">Password</label>
-          <input type="password" id="password" name="password" autoComplete="off" required />
-        </div>
-        <div className="form-action">
-          <button type="submit">Login</button>
-          <Link className="switch-link" to="/user/register">Don't have an account? Register</Link>
-        </div>
-      </form>
+      </div>
     </div>
   );
-}
+};
 
 export default UserLogin;
