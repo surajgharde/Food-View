@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 
 const foodPartnerSchema = new mongoose.Schema({
-    businessName: {
+    name: {
         type: String,
         required: true
     },
