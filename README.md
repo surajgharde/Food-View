@@ -5,31 +5,6 @@
 
 Food View is a full-stack MERN (MongoDB, Express, React, Node.js) application that allows food partners to share food, and users to explore and save food items. The app provides authentication, food partner management, and a simple feed with navigation.
 
----
-
-## 🚀 Features
-
-- **User Authentication**
-  - User Registration & Login
-  - Food Partner Registration & Login
-  - Role-based access (User / Partner)
-
-- **Food Partner**
-  - Create food items
-  - Manage profile
-  - Upload & display food-related content
-
-- **Users**
-  - Browse food feed
-  - Save food items
-  - Profile management
-
-- **General**
-  - Bottom navigation for quick access
-  - Reel-style feed for food items
-  - Responsive UI with modern design
-
-
 ## 🛠️ Tech Stack
 
 - **Frontend:** React.js, React Router, CSS
